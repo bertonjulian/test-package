@@ -10,27 +10,17 @@ jobs:
       id-token: write
       packages: write
     steps:
-      - name: setup node to run 'corepack enable'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: run 'corepack enable'
-        run: corepack enable
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: 'https://npm.pkg.github.com'
           scope: '@bertonjulian'
-          check-latest: true
-          cache: yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Publish Package to Github Packages  
-        run: npm publish --access public
+        run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
