@@ -8,7 +8,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-      packages: read
+      packages: write
     steps:
       - name: setup node to run 'corepack enable'
         uses: actions/setup-node@v4
@@ -33,3 +33,16 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '20'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@bertonjulian'
+      - run: yarn install --frozen-lockfile
+      # publish to npmjs 
+      - run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    
