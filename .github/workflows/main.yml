@@ -39,7 +39,7 @@ jobs:
         with:
           node-version-file: '20'
           registry-url: 'https://registry.npmjs.org'
-          scope: '@bertonjulian'
+          scope: '@jberton'
       - run: yarn install --frozen-lockfile
       # publish to npmjs 
       - run: yarn publish --access public
