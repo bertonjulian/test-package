@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Publish Package to Github Packages  
-        run: yarn publish --access public
+        run: yarn publish --access public --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -32,7 +32,7 @@ jobs:
           scope: '@jberton'
       - run: yarn install --frozen-lockfile
       # publish to npmjs 
-      - run: yarn publish --access public
+      - run: yarn publish --access public --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     
