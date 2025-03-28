@@ -1,4 +1,4 @@
-name: Publish Package to npmjs
+name: Publish Packages
 on:
   push:
     branches: [main]
@@ -16,11 +16,10 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@bertonjulian'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Publish Package to Github Packages  
-        run: yarn publish --access public --non-interactive
+        run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
